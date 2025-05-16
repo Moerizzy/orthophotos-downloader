@@ -765,6 +765,35 @@ class SN_RGB_Dop20_ImageDownloader(ImageDownloader):
         super().__init__(wms=wms, grid_spacing=grid_spacing)
 
 
+class SN_RGB_Dop20_2018_20_ImageDownloader(ImageDownloader):
+    """
+    A class for downloading images from the Sachsen DOP20 WMS service for the years 2018-2020.
+    The WMS specifications are automatically set to the Sachsen DOP20 service.
+
+    Attributes:
+        grid_spacing: The grid spacing in meters for the image download.
+    """
+
+    def __init__(self, grid_spacing: int):
+        """
+        Initialize the SachsenDop20ImageDownloader.
+
+        Args:
+            grid_spacing: The grid spacing in meters for the image download.
+        """
+        # Define the parameters specific for the DOP20 WMS
+        wms = ExtendedWebMapService(
+            url="https://geodienste.sachsen.de/wms_geosn_dop_2018_2020/guest",
+            version="1.3.0",
+            resolution=0.2,
+            layer_name="dop_2018_2020_rgb",
+            crs="EPSG:25832",
+            format="image/tiff",
+        )
+
+        super().__init__(wms=wms, grid_spacing=grid_spacing)
+
+
 class SN_CIR_Dop20_ImageDownloader(ImageDownloader):
     """
     A class for downloading images from the Sachsen DOP20 WMS service.
